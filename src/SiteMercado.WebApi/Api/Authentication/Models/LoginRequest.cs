@@ -1,20 +1,26 @@
-﻿using SiteMercado.Core.Entities;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-namespace SiteMercado.WebApi.Api.Authentication
+namespace SiteMercado.WebApi.Api.Login
 {
     public class LoginRequest
     {
-        public string UserName { get; set; }
+        [Required]
+        public string Username { get; set; }
 
+        [Required]
         public string Password { get; set; }
 
-        public Login ToLogin()
+        public string ToBase64
         {
-            return new Login
+            get
             {
-                UserName = this.UserName,
-                Password = this.Password
-            };
+                var keypair = $"{Username}:{Password}";
+                var encoded = Encoding.GetEncoding("UTF-8").GetBytes(keypair);
+                var base64 = Convert.ToBase64String(encoded);
+                return base64;
+            }
         }
     }
 }

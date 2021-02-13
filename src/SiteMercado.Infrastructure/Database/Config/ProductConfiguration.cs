@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 using SiteMercado.Core.Entities;
 
-namespace SiteMercado.Infrastructure.Databasebase.Config
+namespace SiteMercado.Infrastructure.Database.Config
 {
     public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {

@@ -2,10 +2,13 @@
 
 using SiteMercado.Core.UseCases.Products.Interfaces;
 
+using Swashbuckle.AspNetCore.Annotations;
+
 using System.Threading.Tasks;
 
 namespace SiteMercado.WebApi.Api.Products
 {
+
     public class Update : BaseApiController
     {
         private readonly IUpdateProductUseCase useCase;
@@ -16,10 +19,16 @@ namespace SiteMercado.WebApi.Api.Products
         }
 
         [HttpPut("Product/{id:int}")]
+        [SwaggerOperation(
+            Summary = "Updates a Product",
+            Description = "Updates a Product",
+            OperationId = "Product.Update",
+            Tags = new[] { "Products" })
+        ]
         public async Task<ActionResult<GetAllProductResponse>> HandleAsncy(int id, ProductRequest request)
         {
-            var product = await this.useCase.Handle(request.ToProduct(id));
-            return Ok(ProductResponse.FromProduct(product));
+            await this.useCase.Handle(request.ToProduct(id)).ConfigureAwait(false);
+            return NoContent();
         }
     }
 }

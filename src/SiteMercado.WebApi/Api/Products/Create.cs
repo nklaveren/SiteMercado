@@ -2,6 +2,8 @@
 
 using SiteMercado.Core.UseCases.Products.Interfaces;
 
+using Swashbuckle.AspNetCore.Annotations;
+
 using System.Threading.Tasks;
 
 namespace SiteMercado.WebApi.Api.Products
@@ -17,10 +19,16 @@ namespace SiteMercado.WebApi.Api.Products
         }
 
         [HttpPost("Product")]
+        [SwaggerOperation(
+            Summary = "Creates a new Product",
+            Description = "Creates a new Product",
+            OperationId = "Product.Create",
+            Tags = new[] { "Products" })
+        ]
         public async Task<ActionResult<ProductResponse>> HandleAsncy(ProductRequest request)
         {
             var product = await useCase.Handle(request.ToProduct());
-            return Ok(ProductResponse.FromProduct(product));
+            return Created("api/product/"+ product.Id, ProductResponse.FromProduct(product));
         }
     }
 }

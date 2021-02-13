@@ -3,22 +3,21 @@
 using SiteMercado.Core.Entities;
 using SiteMercado.Core.UseCases.Products.Interfaces;
 
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SiteMercado.Infrastructure.Database.DataSources.Products
 {
-    public class ListAllProductsDataSource : IListAllProductsDataSource
+    public class FindProductByDescriptionDataSource : IFindProductByDescriptionDataSource
     {
         private readonly AppDbContext context;
 
-        public ListAllProductsDataSource(AppDbContext context)
+        public FindProductByDescriptionDataSource(AppDbContext context)
         {
             this.context = context;
         }
-        public async Task<List<Product>> Handle()
+        public async Task<Product> Handle(string param)
         {
-            return await this.context.Set<Product>().ToListAsync();
+            return await this.context.Products.FirstOrDefaultAsync(x => x.Description == param);
         }
     }
 }
