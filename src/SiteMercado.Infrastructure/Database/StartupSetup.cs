@@ -7,6 +7,6 @@ namespace SiteMercado.Infrastructure.Database
     {
         public static void AddAppDbContext(this IServiceCollection services, string connectionString) =>
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlite(connectionString));
+                options.UseSqlServer(connectionString));
     }
 }

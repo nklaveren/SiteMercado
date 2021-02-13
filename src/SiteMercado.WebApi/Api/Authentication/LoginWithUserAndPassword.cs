@@ -52,7 +52,10 @@ namespace SiteMercado.WebApi.Api.Login
             //{
             //    return base.Unauthorized(resposne);
             //}
-            var resposne = new LoginResponse();
+            var resposne = new LoginResponse
+            {
+                Success = true
+            };
             var token = TokenService.GenerateToken(login.Username);
             resposne.Token = token;
             return Ok(resposne);

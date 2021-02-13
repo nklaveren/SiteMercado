@@ -9,9 +9,16 @@ namespace SiteMercado.Infrastructure.Database.Config
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.Property(p => p.Description).IsRequired();
-            builder.Property(p => p.Price).IsRequired();
-            builder.Property(p => p.Image).IsRequired(false);
+            builder.Property(p => p.Description)
+                .HasColumnType("varchar(500)")
+                .IsRequired();
+
+            builder.Property(p => p.Price).IsRequired()
+                 .HasColumnType("decimal(18,2)");
+
+            builder.Property(p => p.Image)
+                .HasColumnType("varchar(500")
+                .IsRequired(false);
 
             builder.HasIndex(x => x.Id).IsUnique();
 
