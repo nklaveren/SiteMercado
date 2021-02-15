@@ -41,21 +41,17 @@ namespace SiteMercado.WebApi.Api.Login
         {
             using var http = new HttpClient();
             http.DefaultRequestHeaders.Add("Authorization", $"Basic {login.ToBase64}");
-            //var httpResponse = await http.PostAsync(this.config.Url, null);
-            //if (!httpResponse.IsSuccessStatusCode)
-            //{
-            //    return NotFound("username or password incorrect");
-            //}
-            //var content = await httpResponse.Content.ReadAsStringAsync();
-            //var resposne = JsonSerializer.Deserialize<LoginResponse>(content);
-            //if (!resposne.Success)
-            //{
-            //    return base.Unauthorized(resposne);
-            //}
-            var resposne = new LoginResponse
+            var httpResponse = await http.PostAsync(this.config.Url, null);
+            if (!httpResponse.IsSuccessStatusCode)
             {
-                Success = true
-            };
+                return NotFound("username or password incorrect");
+            }
+            var content = await httpResponse.Content.ReadAsStringAsync();
+            var resposne = JsonSerializer.Deserialize<LoginResponse>(content);
+            if (!resposne.Success)
+            {
+                throw new Exception(resposne.Error);
+            }
             var token = TokenService.GenerateToken(login.Username);
             resposne.Token = token;
             return Ok(resposne);

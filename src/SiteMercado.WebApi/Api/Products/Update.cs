@@ -27,7 +27,7 @@ namespace SiteMercado.WebApi.Api.Products
         ]
         public async Task<ActionResult<GetAllProductResponse>> HandleAsncy(int id, ProductRequest request)
         {
-            await this.useCase.Handle(request.ToProduct(id)).ConfigureAwait(false);
+            await this.useCase.Handle(request.ToProduct(id));
             return NoContent();
         }
     }

@@ -14,7 +14,7 @@ namespace SiteMercado.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "varchar(500)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Image = table.Column<string>(type: "varchar(500", nullable: true)
+                    Image = table.Column<string>(type: "varchar(500)", nullable: true)
                 },
                 constraints: table =>
                 {

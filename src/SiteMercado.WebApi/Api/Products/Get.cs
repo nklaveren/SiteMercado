@@ -18,8 +18,7 @@ namespace SiteMercado.WebApi.Api.Products
             this.repository = repository;
         }
 
-        [HttpGet("Product/{id:int}.{format?}")]
-        [FormatFilter]
+        [HttpGet("Product/{id:int}")]
         [SwaggerOperation(
             Summary = "Gets a single Product",
             Description = "Gets a single Product by Id",

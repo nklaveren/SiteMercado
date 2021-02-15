@@ -14,6 +14,7 @@ namespace SiteMercado.WebApi.Api.Products
             if (product is null) return null;
             return new GetAllProductResponse
             {
+                Id = product.Id,
                 Description = product.Description,
                 Price = product.Price,
                 Image = product.Image

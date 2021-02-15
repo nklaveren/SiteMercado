@@ -4,7 +4,7 @@ using Xunit;
 
 namespace SiteMercado.FunctionalTests
 {
-    public class UnitTest1
+    public class TokenServiceTest
     {
         [Fact]
         public void Test1()

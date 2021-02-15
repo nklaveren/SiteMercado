@@ -24,9 +24,12 @@ namespace SiteMercado.Core.UseCases.Products
             {
                 throw new ProductNotFoundException();
             }
+            product.Description = param.Description;
+            product.Image = param.Image;
+            product.Price= param.Price;
 
             await this.repository.UpdateAsync(product);
-            return product;
+            return param;
         }
     }
 }

@@ -7,8 +7,8 @@ namespace SiteMercado.WebApi.Api.Login
         [JsonPropertyName("success")]
         public bool Success { get; set; }
         
-        [JsonPropertyName("message")]
-        public string Message { get; set; }
+        [JsonPropertyName("error")]
+        public string Error { get; set; }
         public string Token { get; set; }
     }
 }

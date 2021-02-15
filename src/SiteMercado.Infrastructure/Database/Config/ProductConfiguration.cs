@@ -17,7 +17,7 @@ namespace SiteMercado.Infrastructure.Database.Config
                  .HasColumnType("decimal(18,2)");
 
             builder.Property(p => p.Image)
-                .HasColumnType("varchar(500")
+                .HasColumnType("varchar(500)")
                 .IsRequired(false);
 
             builder.HasIndex(x => x.Id).IsUnique();

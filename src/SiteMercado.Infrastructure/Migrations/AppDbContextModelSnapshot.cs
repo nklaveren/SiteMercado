@@ -30,7 +30,7 @@ namespace SiteMercado.Infrastructure.Migrations
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("Image")
-                        .HasColumnType("varchar(500");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
