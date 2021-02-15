@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
 using SiteMercado.WebApi.Services;
-using SiteMercado.WebApi.StartupExtensions;
 
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -26,8 +25,6 @@ namespace SiteMercado.WebApi.Api.Login
             {
                 throw new ArgumentNullException(nameof(LoginExternalConfig));
             }
-
-
         }
         [AllowAnonymous]
         [HttpPost("Login")]
@@ -37,6 +34,7 @@ namespace SiteMercado.WebApi.Api.Login
             OperationId = "Login.Post",
             Tags = new[] { "Login" })
         ]
+
         public async Task<ActionResult<LoginResponse>> HandleAsncy(LoginRequest login)
         {
             using var http = new HttpClient();
@@ -44,17 +42,17 @@ namespace SiteMercado.WebApi.Api.Login
             var httpResponse = await http.PostAsync(this.config.Url, null);
             if (!httpResponse.IsSuccessStatusCode)
             {
-                return NotFound("username or password incorrect");
+                throw new Exception("External api failure");
             }
             var content = await httpResponse.Content.ReadAsStringAsync();
-            var resposne = JsonSerializer.Deserialize<LoginResponse>(content);
-            if (!resposne.Success)
+            var response = JsonSerializer.Deserialize<LoginResponse>(content);
+            if (!response.Success)
             {
-                throw new Exception(resposne.Error);
+                return response;
             }
             var token = TokenService.GenerateToken(login.Username);
-            resposne.Token = token;
-            return Ok(resposne);
+            response.Token = token;
+            return response;
         }
     }
 }

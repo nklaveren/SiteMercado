@@ -1,5 +1,7 @@
 ﻿using SiteMercado.Core.Entities;
 
+using System;
+
 namespace SiteMercado.WebApi.Api.Products
 {
     public class ProductResponse
@@ -22,5 +24,14 @@ namespace SiteMercado.WebApi.Api.Products
             };
         }
 
+        public ProductRequest ToProductRequest()
+        {
+            return new ProductRequest
+            {
+                Price = Price,
+                Description = Description,
+                Image = Image
+            };
+        }
     }
 }

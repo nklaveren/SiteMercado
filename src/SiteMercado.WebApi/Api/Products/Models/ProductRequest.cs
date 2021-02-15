@@ -8,8 +8,9 @@ namespace SiteMercado.WebApi.Api.Products
     {
         [Required(ErrorMessage = "Description are required")]
         public string Description { get; set; }
-
+        
         [Required(ErrorMessage = "Price are required")]
+        [Range(0.01D, double.MaxValue)]
         public decimal Price { get; set; }
         public string Image { get; set; }
 
@@ -23,12 +24,7 @@ namespace SiteMercado.WebApi.Api.Products
 
         public Product ToProduct()
         {
-            return new Product()
-            {
-                Description = Description,
-                Price = Price,
-                Image = Image,
-            };
+            return new Product(Description, Price, Image);
         }
     }
 }

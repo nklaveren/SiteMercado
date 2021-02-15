@@ -5,9 +5,6 @@ using SiteMercado.SharedKernel.Interfaces;
 
 using Swashbuckle.AspNetCore.Annotations;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SiteMercado.WebApi.Api.Products
@@ -28,14 +25,10 @@ namespace SiteMercado.WebApi.Api.Products
             OperationId = "Product.Delete",
             Tags = new[] { "Products" })
         ]
-        public async Task<ActionResult<ProductResponse>> HandleAsync(int id)
+        public async Task HandleAsync(int id)
         {
             var product = await _repository.GetByIdAsync<Product>(id);
-            if (product == null) return NotFound();
-
             await _repository.DeleteAsync(product);
-
-            return NoContent();
         }
     }
 }

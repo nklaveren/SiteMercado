@@ -17,16 +17,18 @@ namespace SiteMercado.WebApi
     {
         private readonly IConfiguration Configuration;
 
+        public bool UseInMemoryDatabase { get; }
+
         public Startup(IConfiguration configuration)
         {
             this.Configuration = configuration;
+            this.UseInMemoryDatabase = bool.Parse(configuration.GetSection("UseInMemoryDatabase").Value);
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
 
             string connectionString = Configuration.GetConnectionString("ConnectionString");
-
             services.AddAppDbContext(connectionString);
             services.WebApiConfig();
             services.AuthenticationConfig();

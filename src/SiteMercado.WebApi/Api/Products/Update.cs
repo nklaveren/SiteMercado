@@ -25,10 +25,11 @@ namespace SiteMercado.WebApi.Api.Products
             OperationId = "Product.Update",
             Tags = new[] { "Products" })
         ]
-        public async Task<ActionResult<GetAllProductResponse>> HandleAsncy(int id, ProductRequest request)
+        public async Task<ActionResult<ProductResponse>> HandleAsncy(int id, ProductRequest request)
         {
-            await this.useCase.Handle(request.ToProduct(id));
-            return NoContent();
+            var response = await this.useCase.Handle(request.ToProduct(id));
+            return ProductResponse.FromProduct(response);
+
         }
     }
 }

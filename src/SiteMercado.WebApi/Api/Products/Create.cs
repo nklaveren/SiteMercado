@@ -28,7 +28,7 @@ namespace SiteMercado.WebApi.Api.Products
         public async Task<ActionResult<ProductResponse>> HandleAsncy(ProductRequest request)
         {
             var product = await useCase.Handle(request.ToProduct());
-            return Created("api/product/"+ product.Id, ProductResponse.FromProduct(product));
+            return ProductResponse.FromProduct(product);
         }
     }
 }
