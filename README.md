@@ -17,6 +17,16 @@ desenvolvido em dotnet core 3.1
 ```
 /product
 ```
+
+**Atenção**
+
+Para o correto funcionamento dos testes end-to-end as credenciais do usuário devem
+ser salvas nas variáveis de ambiente do sistema local, com o seguinte nome:
+```
+SiteMercadoUsername
+SiteMercadoPassword
+```
+
 ### Testes
 ![tests](tests.png) 
 
