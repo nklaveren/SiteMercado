@@ -13,7 +13,7 @@ desenvolvido em dotnet core 3.1
 ```
 
 ### rotas privadas:
-Utilizar o token obtido na rota `account/login` com header `Authorization: Bearer token` 
+* Utilizar o token obtido na rota `account/login` com header `Authorization: Bearer token` 
 ```
 /home
 /product
