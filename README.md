@@ -17,3 +17,11 @@ desenvolvido em dotnet core 3.1
 ```
 /product
 ```
+### Testes
+![tests](tests.png) 
+
+### Arquitetura
+![proj](project.png) 
+
+### Swagger
+![swagger](swagger.png)
